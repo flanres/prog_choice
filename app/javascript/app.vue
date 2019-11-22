@@ -4,20 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>まずはデータを表示</title>
 </head>
 <body>
+
+<h1>Vue On Rails TODO List</h1>
 
 <div id="app">
   <p>
   <input type="text"
-    placeholder="TODOを入力しましょう！"
+    placeholder="TODOを入力"
     v-model="newItemTitle"
     v-on:keyup.enter="addTodo(newItemTitle)">
   </p>
 
   <ul>
-    <li v-for="item in items">
+    <li v-for="item in items" :key="item.title">
       <label v-bind:class="{ done: item.isChecked }">
         <input type="checkbox" v-model="item.isChecked"> {{ item.title }}
       </label>
@@ -31,7 +32,6 @@
 
 <script>
 export default {
-  el: '#app',
   data: function () {
     return {
       items: [
@@ -39,8 +39,6 @@ export default {
           { title: 'test2', isChecked: true },
           { title: 'test3', isChecked: false },
           { title: 'test4', isChecked: false },
-          { title: 'test5', isChecked: false },
-          { title: 'test6', isChecked: false },
       ],
       newItemTitle: ''
     }
@@ -58,7 +56,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 p {
   font-size: 2em;
   text-align: center;
